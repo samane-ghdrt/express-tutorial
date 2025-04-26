@@ -1,8 +1,24 @@
 import express from 'express';
 const app=express();
 const port=process.env.port || 3000;
+const mockUser=[ 
+    {id:1, usename:"anson",displayname:"Anson"},
+    {id:2, usename:"jack",displayname:"jack"},
+    {id:3, usename:"adam",displayname:"Adam"}
+]
 app.get('/',(req,res)=>{
     res.status(201).send({msg:'hello '})
+})
+app.get('/api/users',(req,res)=>{
+    console.log(req.query);
+    const{query:{filter,value},}=req;
+if(!filter&&!value) return res.send(mockUser);
+    // res.send([
+    //     {id:1, usename:"anson",displayname:"Anson"},
+    //     {id:2, usename:"jack",displayname:"jack"},
+    //     {id:3, usename:"adam",displayname:"Adam"}
+
+    // ])
 })
 app.get('/api/users',(req,res)=>{
     res.send([
